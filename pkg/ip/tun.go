@@ -54,7 +54,7 @@ func OpenTun(name string) (*os.File, string, error) {
 	copy(ifr.IfrnName[:len(ifr.IfrnName)-1], []byte(name+"\000"))
 	ifr.IfruFlags = syscall.IFF_TUN | syscall.IFF_NO_PI
 
-	err = ioctl(int(tun.Fd()), syscall.TUNSETIFF, uintptr(unsafe.Pointer(&ifr)))
+	err = ioctl(int(tun.Fd()), TUNSETIFF, uintptr(unsafe.Pointer(&ifr)))
 	if err != nil {
 		return nil, "", err
 	}
